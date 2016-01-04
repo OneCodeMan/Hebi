@@ -197,28 +197,27 @@ def intro3():
         if 140 > position[0] > 119 and 220 > position[1] > 200:
             if click[0] == 1:
                 snake_color = snake_blue
-                gameLoop(snake_blue)
+                game_loop(snake_blue)
                 
         elif 230 > position[0] > 210 and 220 > position[1] > 200:
             if click[0] == 1:
                 snake_color = snake_pink
-                gameLoop(snake_pink)
+                game_loop(snake_pink)
 
         elif 320 > position[0] > 300 and 220 > position[1] > 200:
             if click[0] == 1:
                 snake_color = snake_violet
-                gameLoop(snake_violet)
+                game_loop(snake_violet)
 
         elif 410 > position[0] > 390 and 220 > position[1] > 200:
             if click[0] == 1:
                 snake_color = snake_red
-                gameLoop(snake_red)
+                game_loop(snake_red)
                 
         elif 500 > position[0] > 480 and 220 > position[1] > 200:
             if click[0] == 1:
                 snake_color = snake_green
-                gameLoop(snake_green)
-        
+                game_loop(snake_green)       
         
 
         pygame.display.update()
@@ -245,7 +244,7 @@ def loss(snake_color):
         if 230 > position[0] > 100 and 430 > position[1] > 300:
             pygame.draw.rect(loserScreen,active_blue,(100,300,130,60))
             if click[0] == 1:
-                 gameLoop(snake_color)
+                 game_loop(snake_color)
         else:
             pygame.draw.rect(loserScreen,normal_blue,(100,300,130,60))
 
@@ -262,7 +261,7 @@ def loss(snake_color):
         pygame.display.update()
 
 
-def FruitGenerator():
+def fruit_generator():
     '''Generates fruit of a random color'''
     fruit_colors = [crimson,crimson,crimson,
                     crimson,crimson,crimson,crimson,crimson,crimson,crimson,
@@ -274,7 +273,7 @@ def FruitGenerator():
     x = random.randint(0,36)
     return fruit_colors[x]  
 
-def gameLoop(snake_color):
+def game_loop(snake_color):
     
     gameScreen = pygame.display.set_mode((screen_width,screen_height))
     pygame.display.set_caption("Hebi")
@@ -290,7 +289,7 @@ def gameLoop(snake_color):
     delta_y = 0
     snakeList = []
     snakeLength = 1
-    randcolor = FruitGenerator()
+    randcolor = fruit_generator()
 
     AppleX = round(random.randrange(0, screen_width-10)/10.0)*10.0
     AppleY = round(random.randrange(0, screen_height-10)/10.0)*10.0
@@ -307,14 +306,6 @@ def gameLoop(snake_color):
         while Over == True:
             loss(snake_color)
             pygame.display.update()
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
-                        Exit = True
-                        Over = False
-                    if event.key == pygame.K_c:
-                        gameLoop()
             
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -381,7 +372,7 @@ def gameLoop(snake_color):
             elif randcolor == lime:
                 score += 100
             
-            randcolor = FruitGenerator()
+            randcolor = fruit_generator()
             AppleX = round(random.randrange(0, screen_width-10)/10.0)*10.0
             AppleY = round(random.randrange(0, screen_height-10)/10.0)*10.0
             pygame.draw.rect(gameScreen,randcolor,[AppleX,AppleY,size,size])
