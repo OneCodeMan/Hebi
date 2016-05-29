@@ -68,9 +68,9 @@ def intro():
         pygame.display.set_caption('Hebi')
         intro.fill(white)
 
-        fruit_colors = [crimson,powderblue,yellow,hotpink,orange,darkorchid,lime,black]
+        fruit_colors = [crimson,powderblue,yellow,hotpink,orange,darkorchid,lime]
         fruit_text = ["10 pts", "20 pts", "30 pts", "50 pts", "70 pts", "90 pts",
-                      "100 pts", "Poison"]
+                      "100 pts"]
             
         vertical = 90
         for i in range(len(fruit_colors)):
@@ -294,11 +294,6 @@ def game_loop(snake_color):
     AppleX = round(random.randrange(0, screen_width-10)/10.0)*10.0
     AppleY = round(random.randrange(0, screen_height-10)/10.0)*10.0
 
-    # Poison
-    PoisonX = round(random.randrange(0, screen_width-10)/10.0)*10.0
-    PoisonY = round(random.randrange(0, screen_height-10)/10.0)*10.0
-    
-
     clock = pygame.time.Clock()
     size = 10
 
@@ -326,7 +321,7 @@ def game_loop(snake_color):
                     delta_y += 10
                     delta_x = 0
 
-        if x_pos > 700 or x_pos < 0 or  y_pos > 500 or y_pos < 0 or (x_pos == PoisonX and y_pos == PoisonY):
+        if x_pos > 700 or x_pos < 0 or  y_pos > 500 or y_pos < 0:
             Over = True
         
             
@@ -336,7 +331,6 @@ def game_loop(snake_color):
         text("Score: "+str(score),black,[0,5],30,gameScreen)
         text("Double tap to speed up!", black, [0,40], 20, gameScreen)
         pygame.draw.rect(gameScreen,randcolor,[AppleX,AppleY,size,size])
-        pygame.draw.rect(gameScreen,black,[PoisonX,PoisonY,size,size])
 
         snakeHead = []
         snakeHead.append(x_pos)
@@ -380,10 +374,6 @@ def game_loop(snake_color):
             AppleX = round(random.randrange(0, screen_width-10)/10.0)*10.0
             AppleY = round(random.randrange(0, screen_height-10)/10.0)*10.0
             pygame.draw.rect(gameScreen,randcolor,[AppleX,AppleY,size,size])
-
-            # Poison
-            PoisonX = round(random.randrange(0, screen_width-10)/10.0)*10.0
-            PoisonY = round(random.randrange(0, screen_height-10)/10.0)*10.0
             
             snakeLength +=1
 
